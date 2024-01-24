@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { Badge } from "@/components/ui/badge";
+import Navigation from "@/shared/Navigation";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -20,6 +22,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn("min-h-screen bg-background font-sans antialiased", inter.className)}>
         <ConvexClientProvider>
+          <Badge className="m-4">New combo solution</Badge>
+          <Navigation />
           {children}
         </ConvexClientProvider>
       </body>
