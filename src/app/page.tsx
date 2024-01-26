@@ -19,28 +19,13 @@ const Home = () => {
           <p className="text-4xl md:text-5xl">Your <span className="font-semibold">Blanked</span> page</p>
           <p className="text-base md:text-lg text-muted-foreground italic">Blanked page this is your own basement. <br /> For your ideas, moodboards, plans and other more</p>
         </div>
-
-        {/* Tooltip */}
-
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button className="gap-2" variant={"default"}>Learn more <ArrowRightIcon className="w-4 h-4" /></Button>
-            </TooltipTrigger>
-
-            <TooltipContent>
-              <p>Read documentation</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-
         <Separator />
       </div>
 
       {/* Accordion */}
 
       <div className="mx-10 md:mx-40 lg:mx-60">
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible className="w-full space-y-4 lg:space-y-6">
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it helpful?</AccordionTrigger>
             <AccordionContent>
