@@ -17,7 +17,13 @@ import {
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 
+import { useMutation } from 'convex/react'
+import { api } from '../../../../../convex/_generated/api'
+import { useToast } from '@/components/ui/use-toast'
+
 const FormNotes: FC = () => {
+    const createNote = useMutation(api.notes.createNote)
+    const { toast } = useToast()
     const FormSchema = z.object({
         note: z
             .string()
@@ -31,25 +37,36 @@ const FormNotes: FC = () => {
     })
 
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
-        console.log(data)
-        form.resetField('note')
+        const { note } = data;
+        createNote({ text: note })
+        form.setValue("note", "")
+        toast({
+            title: "Success creation",
+            description: "Your note was created!",
+        })
     }
 
+    // sample text right now
+
     return (
+
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col md:block space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-w-xl space-y-4">
                 <FormField
                     control={form.control}
                     name="note"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Your note</FormLabel>
+                            <FormLabel className='font-semibold text-lg'>Your note</FormLabel>
+
                             <FormControl>
-                                <Textarea
+                                {/* <Textarea
                                     placeholder="Write your note or everything what you want and try to redact this"
-                                    className="resize-y"
+                                    className='resize-y'
                                     {...field}
-                                />
+                                /> */}
+
+                                
                             </FormControl>
                             <FormDescription>
                                 You can format your note(bold, underline, italic)

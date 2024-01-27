@@ -30,7 +30,7 @@ const MoodBoard: FC = memo(() => {
                     </div>
                 </Label>
 
-                <Input multiple onChange={useCallback((e: ChangeEvent<HTMLInputElement>) => getInsertedImage(e, setImages), [setImages])} accept='image/*' className='hidden' id="picture" type="file" />
+                <Input onChange={useCallback((e: ChangeEvent<HTMLInputElement>) => getInsertedImage(e, setImages), [setImages])} accept='image/*' className='hidden' id="picture" type="file" />
 
                 {images.map((image) => <Image alt="image added" src={image} width={100} height={100} />)}
 

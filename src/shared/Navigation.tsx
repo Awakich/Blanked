@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { SignInButton, UserButton } from '@clerk/clerk-react'
 import { useConvexAuth } from 'convex/react'
-import { ArrowRightIcon, BarChart2, ClipboardListIcon, HomeIcon, LightbulbIcon, MenuIcon, PenBoxIcon } from 'lucide-react'
+import { ArrowRightIcon, BarChart2, ClipboardListIcon, ContainerIcon, HomeIcon, LightbulbIcon, MenuIcon, PenBoxIcon } from 'lucide-react'
 import { FC, Fragment, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -23,7 +23,11 @@ const Navigation: FC = () => {
 
     return (
         <Fragment>
-            <Badge onClick={transferHome} className="py-2 mb-4 cursor-pointer flex-shrink gap-2"><HomeIcon className='w-4 h-4' /> New combo solution</Badge>
+            <div className='flex justify-between items-center'>
+                <Badge variant={'outline'} onClick={transferHome} className="py-2 mb-4 cursor-pointer flex-shrink gap-2"><HomeIcon className='w-4 h-4' /> New combo solution</Badge>
+                <Badge variant={"default"} className="py-2 mb-4 font-mono font-normal flex-shrink gap-2">Project in development mode! <ContainerIcon className='w-4 h-4' /></Badge>
+            </div>
+
             <nav className='flex justify-between items-center'>
                 <Sheet onOpenChange={changeOpen} open={isOpen} defaultOpen={false}>
                     <SheetTrigger asChild>
