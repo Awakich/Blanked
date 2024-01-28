@@ -2,13 +2,17 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
-import { useConvexAuth } from 'convex/react'
+import { useConvexAuth, useQuery } from 'convex/react'
 import { redirect } from 'next/navigation'
 import { FC } from 'react'
 import Overview from './components/Overview'
+import { api } from '../../../../convex/_generated/api'
 
 const Stats: FC = () => {
     const { isAuthenticated } = useConvexAuth()
+    const tasks = useQuery(api.tasks.getTasks) || []
+    const notes = useQuery(api.notes.getNotes) || []
+    const messages = useQuery(api.moodboard.getImages) || [];
 
     if (!isAuthenticated) redirect('/')
 
@@ -25,9 +29,9 @@ const Stats: FC = () => {
                         </CardHeader>
 
                         <CardContent>
-                            <div className="text-2xl font-bold">45</div>
+                            <div className="text-2xl font-bold">{messages?.length}</div>
                             <p className="text-xs text-muted-foreground">
-                                +20.1% from last month
+                                Added images from account
                             </p>
                         </CardContent>
                     </Card>
@@ -41,9 +45,9 @@ const Stats: FC = () => {
                         </CardHeader>
 
                         <CardContent>
-                            <div className="text-2xl font-bold">350</div>
+                            <div className="text-2xl font-bold">{notes?.length}</div>
                             <p className="text-xs text-muted-foreground">
-                                +180.1% from last month
+                                Added notes from account
                             </p>
                         </CardContent>
                     </Card>
@@ -54,9 +58,9 @@ const Stats: FC = () => {
                         </CardHeader>
 
                         <CardContent>
-                            <div className="text-2xl font-bold">234</div>
+                            <div className="text-2xl font-bold">{tasks?.filter((task) => task.isComplete !== false).length}</div>
                             <p className="text-xs text-muted-foreground">
-                                +19% from last month
+                                Complete tasks from account
                             </p>
                         </CardContent>
                     </Card>
@@ -69,9 +73,9 @@ const Stats: FC = () => {
                         </CardHeader>
 
                         <CardContent>
-                            <div className="text-2xl font-bold">573</div>
+                            <div className="text-2xl font-bold">{tasks?.length}</div>
                             <p className="text-xs text-muted-foreground">
-                                +201 since last hour
+                                Added tasks from account
                             </p>
                         </CardContent>
 
@@ -85,14 +89,18 @@ const Stats: FC = () => {
                         </CardHeader>
 
                         <CardContent className="pl-2">
-                            <Overview />
+                            <Overview
+                                totalCompleteTasks={tasks?.filter((task) => task.isComplete !== false).length || 0}
+                                totalImages={messages?.length || 0}
+                                totalNotes={notes?.length || 0}
+                                totalTasks={tasks?.length || 0} />
                         </CardContent>
 
                     </Card>
                 </div>
 
             </TabsContent>
-        </Tabs>
+        </Tabs >
     )
 }
 

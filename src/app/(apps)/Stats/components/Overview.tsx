@@ -2,11 +2,37 @@
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { FC } from 'react'
-import { OverviewData } from "@/utils/consts"
 
-const Overview: FC = () => {
+type OverviewProps = {
+    totalImages: number | string
+    totalNotes: number | string
+    totalTasks: number | string
+    totalCompleteTasks: number | string
+}
+
+const Overview: FC<OverviewProps> = ({ totalImages, totalNotes, totalTasks, totalCompleteTasks }) => {
+
+    const OverviewData = [
+        {
+            name: "Images",
+            total: totalImages,
+        },
+        {
+            name: "Tasks",
+            total: totalTasks,
+        },
+        {
+            name: "Complete Tasks",
+            total: totalCompleteTasks,
+        },
+        {
+            name: "Notes",
+            total: totalNotes
+        }
+    ]
+
     return (
-        <ResponsiveContainer width="100%" height={350} >
+        <ResponsiveContainer width="100%" height={350}>
             <BarChart data={OverviewData}>
                 <XAxis
                     dataKey="name"

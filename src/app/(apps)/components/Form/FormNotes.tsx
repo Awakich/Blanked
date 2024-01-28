@@ -21,6 +21,7 @@ import { useMutation } from 'convex/react'
 import { api } from '../../../../../convex/_generated/api'
 import { useToast } from '@/components/ui/use-toast'
 
+
 const FormNotes: FC = () => {
     const createNote = useMutation(api.notes.createNote)
     const { toast } = useToast()
@@ -46,8 +47,6 @@ const FormNotes: FC = () => {
         })
     }
 
-    // sample text right now
-
     return (
 
         <Form {...form}>
@@ -60,16 +59,15 @@ const FormNotes: FC = () => {
                             <FormLabel className='font-semibold text-lg'>Your note</FormLabel>
 
                             <FormControl>
-                                {/* <Textarea
+                                <Textarea
                                     placeholder="Write your note or everything what you want and try to redact this"
                                     className='resize-y'
                                     {...field}
-                                /> */}
-
-                                
+                                />
                             </FormControl>
+
                             <FormDescription>
-                                You can format your note(bold, underline, italic)
+                                You can format your note and add styles then
                             </FormDescription>
                             <FormMessage />
                         </FormItem>
