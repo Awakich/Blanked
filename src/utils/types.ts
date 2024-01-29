@@ -1,13 +1,16 @@
+import { Id } from "../../convex/_generated/dataModel"
+
 export type NoteType = {
-    _id: string
+    _id: Id<"notes">
     text: string
 }
 
 export type TaskType = {
-    _id: string
+    _id: Id<"tasks">
     name: string
     description: string
-    level: "Eeasy" | "Medium" | "Hard"
+    level: "Easy" | "Medium" | "Hard",
+    isComplete: boolean
 }
 
 export type TypeProps = {

@@ -58,7 +58,7 @@ const FormTask: FC = () => {
 
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         const { name, description, level } = data;
-        createTask({ name, description, level })
+        createTask({ name, description, level, isComplete: false })
         form.resetField("name")
         form.resetField("description")
         toast({
@@ -69,7 +69,7 @@ const FormTask: FC = () => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col max-w-lg space-y-4'>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col space-y-4'>
 
                 <FormField control={form.control} name='name' render={({ field }) => (
                     <div className='space-y-2'>
@@ -111,7 +111,7 @@ const FormTask: FC = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Add</Button>
+                <Button className='md:py-4 md:text-base' type="submit">Add</Button>
             </form>
         </Form>
     )

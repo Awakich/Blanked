@@ -29,7 +29,6 @@ const MoodBoard: FC = () => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [eventActive, setEventActive] = useState<boolean>(false)
-    const [isDragging, setIsDragging] = useState<boolean>(false)
 
     const { toast } = useToast()
 
@@ -114,11 +113,11 @@ const MoodBoard: FC = () => {
                     }
 
                     {messages.map((message) => (
-                        <li key={message._id}>
+                        <li className='h-full' key={message._id}>
                             {message.format === "image" &&
                                 <ContextMenu>
                                     <ContextMenuTrigger>
-                                        <Image draggable="true" className={`${isDragging ? "dragging" : ""} rounded-lg`} alt="added image" src={message.url} height={300} width={300} />
+                                        <Image className='rounded-lg' alt="added image" src={message.url} height={300} width={300} />
                                     </ContextMenuTrigger>
 
                                     <ContextMenuContent>

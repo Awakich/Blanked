@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRightIcon } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +5,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Separator } from "@/components/ui/separator";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Home = () => {
   return (

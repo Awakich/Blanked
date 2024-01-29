@@ -16,27 +16,27 @@ export const createNote = mutation({
 export const updateNote = mutation({
     args: {
         text: v.string(),
-        id: v.id("notes")
+        _id: v.id("notes")
     },
 
     handler: async (ctx, args) => {
-        await ctx.db.patch(args.id, {
+        await ctx.db.patch(args._id, {
             text: args.text
         })
+    },
+})
+
+export const deleteNote = mutation({
+    args: {
+        _id: v.id("notes")
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.delete(args._id)
     },
 })
 
 export const getNotes = query({
     handler: async (ctx) => {
         return ctx.db.query("notes").collect()
-    },
-})
-
-export const getNote = query({
-    args: {
-        id: v.id("notes")
-    },
-    handler: async (ctx, args) => {
-        return await ctx.db.get(args.id)
     },
 })

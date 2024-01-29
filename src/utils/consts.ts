@@ -10,3 +10,5 @@ export const arrayAppsAuth = [
     { title: "Notes", description: "Create your notes" },
     { title: "Stats", description: "Check your profile stats for all time" }
 ]
+
+export const styles = `bg-transparent hover:bg-transparent`
