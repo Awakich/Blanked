@@ -35,15 +35,15 @@ const NoteListItem: FC<NoteType> = memo(({ _id, text }) => {
         <div className='p-5 border-2 rounded-md'>
             <div className='flex justify-between items-center'>
                 <ToggleGroup type='single' className='space-x-2'>
-                    <ToggleGroupItem className='border' onClick={useCallback(() => setPickedStyle('bold'), [pickedStyle])} value='Toggle Bold'>
+                    <ToggleGroupItem className='border' onClick={useCallback(() => setPickedStyle('bold'), [])} value='Toggle Bold'>
                         <BoldIcon className='w-4 h-4 ' />
                     </ToggleGroupItem>
 
-                    <ToggleGroupItem className='border' onClick={useCallback(() => setPickedStyle('italic'), [pickedStyle])} value='Toggle Italic'>
+                    <ToggleGroupItem className='border' onClick={useCallback(() => setPickedStyle('italic'), [])} value='Toggle Italic'>
                         <ItalicIcon className='w-4 h-4 ' />
                     </ToggleGroupItem>
 
-                    <ToggleGroupItem className='border' onClick={useCallback(() => setPickedStyle('undeline'), [pickedStyle])} value='Toggle Underline'>
+                    <ToggleGroupItem className='border' onClick={useCallback(() => setPickedStyle('undeline'), [])} value='Toggle Underline'>
                         <UnderlineIcon className='w-4 h-4 ' />
                     </ToggleGroupItem>
                 </ToggleGroup>
@@ -104,5 +104,7 @@ const NoteListItem: FC<NoteType> = memo(({ _id, text }) => {
         </div >
     )
 })
+
+NoteListItem.displayName = 'NoteListItem';
 
 export default NoteListItem

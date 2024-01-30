@@ -10,7 +10,7 @@ export const sendImage = mutation({
     handler: async (ctx, args) => {
         await ctx.db.insert("moodboard", {
             body: args.storageId,
-            format: "image"
+            format: "image",
         });
     },
 });

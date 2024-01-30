@@ -12,7 +12,7 @@ const MoodBoard: FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [eventActive, setEventActive] = useState<boolean>(false)
     
-    const messages = useQuery(api.moodboard.getImages) || [];
+    const messages =  useQuery(api.moodboard.getImages) || [];
    
     useEffect(() => {
         if (messages) setIsLoading(false)

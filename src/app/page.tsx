@@ -40,7 +40,7 @@ const Home = () => {
           <AccordionItem value="item-3">
             <AccordionTrigger>Do I need to buy a subscription for this service?</AccordionTrigger>
             <AccordionContent>
-              No, it's a free solution for your problems.
+              {`No, it's a free solution for your problems.`}
             </AccordionContent>
           </AccordionItem>
         </Accordion>

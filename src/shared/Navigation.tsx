@@ -38,7 +38,7 @@ const Navigation: FC = () => {
                         <SheetHeader>
                             <SheetTitle className=''>What will you choose?</SheetTitle>
                             <SheetDescription>
-                                That's apps picker. You will choose one of applications and solve your problems.
+                                {`That's apps picker. You will choose one of applications and solve your problems.`}
                             </SheetDescription>
                         </SheetHeader>
 
