@@ -57,6 +57,15 @@ export const completeTask = mutation({
     },
 })
 
+export const deleteTask = mutation({
+    args: {
+        _id: v.id("tasks")
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.delete(args._id)
+    },
+})
+
 export const getTasks = query({
     handler: async (ctx) => {
         return ctx.db.query("tasks").collect()

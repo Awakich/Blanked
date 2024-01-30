@@ -13,6 +13,7 @@ const Stats: FC = () => {
     const tasks = useQuery(api.tasks.getTasks) || []
     const notes = useQuery(api.notes.getNotes) || []
     const messages = useQuery(api.moodboard.getImages) || [];
+    const pictures = useQuery(api.pictures.getPictures) || []
 
     if (!isAuthenticated) redirect('/')
 
@@ -80,6 +81,22 @@ const Stats: FC = () => {
                         </CardContent>
 
                     </Card>
+
+                    <Card>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium">
+                                Total Pictures
+                            </CardTitle>
+                        </CardHeader>
+
+                        <CardContent>
+                            <div className="text-2xl font-bold">{pictures?.length}</div>
+                            <p className="text-xs text-muted-foreground">
+                                Added pictures from account
+                            </p>
+                        </CardContent>
+
+                    </Card>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
@@ -93,7 +110,9 @@ const Stats: FC = () => {
                                 totalCompleteTasks={tasks?.filter((task) => task.isComplete !== false).length || 0}
                                 totalImages={messages?.length || 0}
                                 totalNotes={notes?.length || 0}
-                                totalTasks={tasks?.length || 0} />
+                                totalTasks={tasks?.length || 0}
+                                totalPictures={pictures.length || 0}
+                                />
                         </CardContent>
 
                     </Card>

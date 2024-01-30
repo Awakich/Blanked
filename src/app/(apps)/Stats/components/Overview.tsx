@@ -8,9 +8,10 @@ type OverviewProps = {
     totalNotes: number | string
     totalTasks: number | string
     totalCompleteTasks: number | string
+    totalPictures: number | string
 }
 
-const Overview: FC<OverviewProps> = ({ totalImages, totalNotes, totalTasks, totalCompleteTasks }) => {
+const Overview: FC<OverviewProps> = ({ totalImages, totalNotes, totalTasks, totalCompleteTasks, totalPictures }) => {
 
     const OverviewData = [
         {
@@ -28,6 +29,10 @@ const Overview: FC<OverviewProps> = ({ totalImages, totalNotes, totalTasks, tota
         {
             name: "Notes",
             total: totalNotes
+        },
+        {
+            name: "Pictures",
+            total: totalPictures
         }
     ]
 

@@ -37,6 +37,6 @@ export const deleteNote = mutation({
 
 export const getNotes = query({
     handler: async (ctx) => {
-        return ctx.db.query("notes").collect()
+        return await ctx.db.query("notes").collect()
     },
 })

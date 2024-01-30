@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { SignInButton, UserButton } from '@clerk/clerk-react'
 import { useConvexAuth } from 'convex/react'
-import { ArrowRightIcon, BarChart2, ClipboardListIcon, ContainerIcon, HomeIcon, LightbulbIcon, MenuIcon, PenBoxIcon } from 'lucide-react'
+import { ArrowRightIcon, BarChart2, Brush, ClipboardListIcon, ContainerIcon, HomeIcon, LightbulbIcon, MenuIcon, PenBoxIcon } from 'lucide-react'
 import { FC, Fragment, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -47,7 +47,7 @@ const Navigation: FC = () => {
                             <Separator />
                             {(isAuthenticated ? arrayAppsAuth : arrayApps).map(({ title, description }, index) => (
                                 <Link onClick={() => setIsOpen(false)} href={`/${title}`} key={index} className='flex gap-3 items-center p-2 hover:bg-neutral-100 cursor-pointer border rounded-md'>
-                                    {index === 0 ? <LightbulbIcon className='w-6 h-6' /> : index === 1 ? <ClipboardListIcon className='w-6 h-6' /> : index === 2 ? <PenBoxIcon className='w-6 h-6' /> : <BarChart2 className='w-6 h-6' />}
+                                    {index === 0 ? <LightbulbIcon className='w-6 h-6' /> : index === 1 ? <ClipboardListIcon className='w-6 h-6' /> : index === 2 ? <PenBoxIcon className='w-6 h-6' /> : index === 3 ? <Brush className='w-6 h-6' /> : <BarChart2 className='w-6 h-6' />}
 
                                     <div className='w-full'>
                                         <div className='flex justify-between items-center'>

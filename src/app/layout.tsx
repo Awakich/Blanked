@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { Toaster } from "@/components/ui/toaster";
 import Navigation from "@/shared/Navigation";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 

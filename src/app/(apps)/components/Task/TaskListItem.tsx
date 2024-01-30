@@ -9,20 +9,22 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { EditIcon } from 'lucide-react'
-import { ChangeEvent, FC, useState } from 'react'
 import { TaskType } from '@/utils/types'
 import { styles } from '@/utils/consts'
+import { ChangeEvent, FC, useState } from 'react'
 
 const TaskListItem: FC<TaskType> = ({ _id, description, level, name, isComplete }) => {
     const updateTask = useMutation(api.tasks.updateTask)
     const completeTask = useMutation(api.tasks.completeTask)
+    const deleteTask = useMutation(api.tasks.deleteTask)
 
     const [nameInput, setNameInput] = useState<string>(name)
     const [descriptionInput, setDescriptionInput] = useState<string>(description)
     const [levelInput, setLevelInput] = useState<"Easy" | "Medium" | "Hard">(level)
 
     const completeTaskHandler = () => completeTask({ _id, isComplete: !isComplete })
-    const updateNoteHandler = () => updateTask({ _id, name: nameInput, description: descriptionInput, level: levelInput })
+    const updateTaskHandler = () => updateTask({ _id, name: nameInput, description: descriptionInput, level: levelInput })
+    const deleteTaskHandler = () => deleteTask({ _id })
 
     const nameChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setNameInput(e.target.value)
     const descriptionChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setDescriptionInput(e.target.value)
@@ -36,10 +38,12 @@ const TaskListItem: FC<TaskType> = ({ _id, description, level, name, isComplete 
                         <div className='flex flex-col space-y-2'>
                             <div className='flex space-x-2 items-center'>
                                 <p className='text-lg'>{name}</p>
+
                                 <AlertDialog>
                                     <AlertDialogTrigger asChild>
                                         <EditIcon className='w-4 h-4 cursor-pointer hover:text-gray-500 hover:animate-in hover:animate-out' />
                                     </AlertDialogTrigger>
+
                                     <AlertDialogContent>
                                         <AlertDialogHeader>
                                             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -67,9 +71,10 @@ const TaskListItem: FC<TaskType> = ({ _id, description, level, name, isComplete 
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>Cancel</AlertDialogCancel>
                                             <AlertDialogAction className={`${styles}`}>
-                                                <Button onClick={updateNoteHandler}>Change</Button>
+                                                <Button onClick={updateTaskHandler}>Change</Button>
                                             </AlertDialogAction>
                                         </AlertDialogFooter>
+
                                     </AlertDialogContent>
                                 </AlertDialog>
                             </div>
@@ -81,15 +86,16 @@ const TaskListItem: FC<TaskType> = ({ _id, description, level, name, isComplete 
                             <p className={`${level === "Medium" ? 'text-amber-600' : level === "Hard" ? 'text-red-500' : "text-emerald-600"} font-bold`}>{level}</p>
                             <div className="flex items-center space-x-2">
                                 <Label htmlFor="airplane-mode">Complete</Label>
-                                <Switch onClick={completeTaskHandler} id="airplane-mode" />
+                                <Switch checked={isComplete} onClick={completeTaskHandler} id="airplane-mode" />
                             </div>
                         </div>
                     </div>
                 </div>
             </ContextMenuTrigger>
+
             <ContextMenuContent>
                 <ContextMenuItem>Back</ContextMenuItem>
-                <ContextMenuItem>Delete</ContextMenuItem>
+                <ContextMenuItem onClick={deleteTaskHandler} >Delete</ContextMenuItem>
             </ContextMenuContent>
         </ContextMenu>
     )

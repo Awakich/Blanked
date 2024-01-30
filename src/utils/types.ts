@@ -13,6 +13,11 @@ export type TaskType = {
     isComplete: boolean
 }
 
+export type PicturesType = {
+    _id: Id<"pictures">
+    url: string
+}
+
 export type TypeProps = {
     type: "tasks" | "notes"
 }
