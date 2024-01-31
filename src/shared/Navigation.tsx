@@ -8,9 +8,9 @@ import { SignInButton, UserButton } from '@clerk/clerk-react'
 import { useConvexAuth } from 'convex/react'
 import { ArrowRightIcon, BarChart2, Brush, ClipboardListIcon, ContainerIcon, HomeIcon, LightbulbIcon, MenuIcon, PenBoxIcon } from 'lucide-react'
 import { FC, Fragment, useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { arrayApps, arrayAppsAuth } from '@/utils/consts'
+import Link from 'next/link'
 
 
 const Navigation: FC = () => {
@@ -65,7 +65,7 @@ const Navigation: FC = () => {
 
                 <div className='mr-4'>
                     {!isAuthenticated && !isLoading && (
-                        <SignInButton>
+                        <SignInButton afterSignInUrl='/' mode='modal'>
                             <Button variant={"outline"} size={"sm"}>Get Blanked for Free</Button>
                         </SignInButton>
                     )}
